@@ -35,5 +35,10 @@ function M.check_plenary()
   return status
 end
 
+function M.get_containing_path()
+  local info = debug.getinfo(1,'S');
+  return string.sub(info.source, 2, -10)
+end
+
 
 return M
