@@ -1,0 +1,11 @@
+*xmake-nvim* Xmake plugin for Neovim written in Lua
+
+Author: Adversarr <yangzherui2001@foxmail.com>
+
+==============================================================================
+CONTENTS                                                          *xmake-nvim*
+
+  1. Introduction                                    *xmake-nvim-introduction*
+
+
+==============================================================================
