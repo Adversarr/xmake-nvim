@@ -1,28 +1,30 @@
 -- Check the existance of plenary.
-local utils = require 'xmake.utils'
-local has_plenary = utils.check_plenary()
-if not has_plenary then
-  return
-end
-
-local config = require 'xmake.config'
+local utils = require 'xmake-nvim.utils'
+local config = require 'xmake-nvim.config'
 local M = {
-  config = config
-  is_inited = false,
 }
 
 -- TODO: Check plenary is installed.
 
+local function setup_all_submodules()
+  M.config = config
+  M.show = require 'xmake-nvim.show'
+  M.utils = require 'xmake-nvim.utils'
+end
 
 function M.setup(opt)
   opt = opt or {}
-  
-
-  for k, v in opt do
-    config.update(k, v)
+  local status, _ = pcall(require, 'plenary')
+  if not status then
+    vim.notify("xmake-nvim is not setup: xmake-nvim depends on pleanry.nvim, please check plenary is installed.", vim.log.levels.ERROR, {})
+    return
   end
+  config.setup(opt)
+  setup_all_submodules()
+end
 
-  M.is_inited = true
+if config.is_inited then
+  setup_all_submodules()
 end
 
 return M
