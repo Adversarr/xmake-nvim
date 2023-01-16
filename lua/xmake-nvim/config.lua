@@ -1,7 +1,7 @@
 local config = {
   -- NOTE: Default config for xmake-nvim
   xmake_executable_path = "xmake",
-  log_level = vim.log.levels.INFO
+  log_level = vim.log.levels.INFO,
   env_vars = {
     -- e.g.
     -- http_proxy = 'http://127.0.0.1:7890'
@@ -25,7 +25,7 @@ function M.update(name, val)
 end
 
 function M.setup(opts)
-  for k, v in opt do
+  for k, v in pairs(opts) do
     config.update(k, v)
   end
   M.is_inited = true

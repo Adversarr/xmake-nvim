@@ -7,6 +7,7 @@ local M = {
 -- TODO: Check plenary is installed.
 
 local function setup_all_submodules()
+  require('xmake-nvim.details.autocmds').setup()
   M.config = config
   M.show = require 'xmake-nvim.show'
   M.utils = require 'xmake-nvim.utils'
@@ -20,10 +21,6 @@ function M.setup(opt)
     return
   end
   config.setup(opt)
-  setup_all_submodules()
-end
-
-if config.is_inited then
   setup_all_submodules()
 end
 

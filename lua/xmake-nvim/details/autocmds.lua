@@ -20,6 +20,11 @@ local M = {
 
     -- any xmake.lua file change
     config_file_change = 'XmakeConfigFileChange',
+    -- Internal config change:
+    config_load_success = 'XmakeConfigLoadSuccess',
+    config_load_failed = 'XmakeConfigLoadFailed',
+    config_load_pre = 'XmakeConfigLoadPre',
+    config_load_post = 'XmakeConfigLoadPost',
   }
 }
 
@@ -28,6 +33,13 @@ function M.setup()
     clear = true
   })
   -- TODO: register
+end
+
+function M.exec(name)
+  vim.api.nvim_exec_autocmds('User', {
+    group = M.config.group_name,
+    pattern = name
+  })
 end
 
 return M
